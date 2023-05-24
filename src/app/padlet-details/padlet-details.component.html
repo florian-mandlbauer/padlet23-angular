@@ -1,0 +1,19 @@
+<div class="container px-4 py-5" *ngIf="padlet">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{padlet.title}}</h1>
+      <hr>
+      <h4>{{padlet.subtitle}}</h4>
+      <p><b>Veröffentlicht am: </b>{{padlet.published | date: 'longDate'}}</p>
+      <p><b>Erstellt von: </b>{{padlet?.user?.name}} mit der UID {{padlet?.user?.id}}</p>
+      <p><b>Bewertung: </b>{{padlet.rating}}</p>
+      <p><b>Kommentar: </b>{{padlet.comment}}</p>
+
+      <button [routerLink]="'../'" class="btn btn-primary me-2">Zurück zur Padlist</button>
+
+      <button *ngIf="authService.isLoggedIn()" (click)="checkIfLoggedInUserIsNotEntryOwner()" [routerLink]="['../../admin', padletContainer.id, padlet.id]" class="btn btn-warning me-2">Bearbeiten</button>
+
+      <button *ngIf="authService.isLoggedIn()" class="btn btn-danger me-2" (click)="removePadletEntry()">Padlet-Entry löschen</button>
+    </div>
+  </div>
+</div>

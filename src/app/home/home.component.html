@@ -1,0 +1,16 @@
+
+<!-- THIS IS THE HOME TAB -->
+<section class="py-5 text-center container">
+  <div class="row py-lg-5">
+    <div class="col-lg-10 col-md-8 mx-auto">
+      <h1 *ngIf="authService.isLoggedOut()">Willkommen bei Padlist!</h1>
+      <h1 *ngIf="!authService.isLoggedIn">Willkommen bei Padlist!</h1>
+      <h1 *ngIf="authService.isLoggedIn()">Willkommen bei Padlist, {{authService.getCurrentUser().name}}!</h1>
+      <p *ngIf="authService.isLoggedIn()" class="lead text-muted">Klicke auf den unteren Link, um zu allen Padlets zu gelangen.</p>
+      <p *ngIf="authService.isLoggedOut()" class="lead text-muted">Klicke auf den "Login"-Tab, um dich anzumelden.</p>
+      <p>
+        <a *ngIf="authService.isLoggedIn()" routerLink="../padletcontainers" class="btn btn-primary my-2">Liste der Padlet-Containers ansehen</a>
+      </p>
+    </div>
+  </div>
+</section>

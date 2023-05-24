@@ -1,0 +1,71 @@
+<!-- <p>padlet-entry-form works!</p> -->
+
+<div class="container px-4 py-5">
+  <h1 class="mb-3">Padlet-Entry Formular</h1>
+  <form [formGroup]="padletEntryForm" (ngSubmit)="submitForm()">
+
+    <!-- PADLET-ID -->
+    <input type="hidden" formControlName="id">
+
+    <!-- TITLE -->
+    <div class="mb-3">
+      <label for="padletEntryTitle" class="form-label">Titel</label>
+      <input type="text" class="form-control" id="padletEntryTitle" formControlName="title">
+
+      <div *ngIf="errors['title']" class="alert alert-danger d-flex align-items-center my-3" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+          <use xlink:href="#exclamation-triangle-fill"/>
+        </svg>
+        <div>
+          {{errors['title']}}
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBTITLE -->
+    <div class="mb-3">
+      <label for="padletEntrySubtitle" class="form-label">Untertitel</label>
+      <input type="text" class="form-control" id="padletEntrySubtitle" formControlName="subtitle">
+    </div>
+
+    <!-- PUBLISHED -->
+    <div class="mb-3" [class.disabled]="isUpdatingPadletEntry">
+      <label for="padletEntryPublished" class="form-label">Veröffentlicht am</label>
+      <input type="date" class="form-control" id="padletEntryPublished" formControlName="published">
+
+      <div *ngIf="errors['published']" class="alert alert-danger d-flex align-items-center my-3" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+          <use xlink:href="#exclamation-triangle-fill"/>
+        </svg>
+        <div>
+          {{errors['published']}}
+        </div>
+      </div>
+    </div>
+
+    <!-- RATING -->
+    <div class="mb-3">
+      <label for="padletEntryRating" class="form-label">Bewertung</label>
+      <input type="number" class="form-control" id="padletEntryRating" formControlName="rating">
+
+      <div *ngIf="errors['rating']" class="alert alert-danger d-flex align-items-center my-3" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+          <use xlink:href="#exclamation-triangle-fill"/>
+        </svg>
+        <div>
+          {{errors['rating']}}
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMENT -->
+    <div class="mb-3">
+      <label for="padletEntryComment" class="form-label">Kommentar</label>
+      <input type="text" class="form-control" id="padletEntryComment" formControlName="comment">
+    </div>
+
+    <button type="submit" class="btn btn-primary my-2" [disabled]="padletEntryForm.invalid">Speichern</button>
+    <!-- <button class="btn btn-dark" (click)="navigateToPadletEntries(padlet.id)">Zurück</button> -->
+  </form>
+</div>
+

@@ -1,0 +1,19 @@
+
+<!-- PADLETS RENDERING -->
+<div class="container px-4 py-5" id="custom-cards">
+  <h1 class="pb-5 border-bottom text-center">Padlet-Entries</h1>
+  <!-- <p class="text-center">padlet-list works! (Wird von "padlet-list-component.html" gerendert)</p> -->
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <span *ngFor="let padlet of padlets">
+
+      <div class="col">
+        <!-- REST OF THE CODE IN "padlet-list-item-component.html" -->
+      </div>
+
+      <!-- BUTTON LINKS TO DETAIL VIEW OF THE PADLET -->
+      <a class="btn bs-padlet-list-item" [padlet]="padlet" [routerLink]="String(padlet.id)">Detailansicht (TODO)</a>
+
+    </span>
+  </div>
+</div>

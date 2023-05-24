@@ -1,0 +1,63 @@
+<div class="container px-4 py-5" id="custom-cards">
+  <h1 class="pb-5 border-bottom text-center">Alle Padlet-Container ("Padlets")</h1>
+  <div class="col">
+    <div class="card card-cover h-100 overflow-hidden text-white bg-primary rounded-5 shadow-lg">
+
+      <div *ngFor="let container of containers" class="d-flex flex-column p-5 pb-3 text-white text-shadow-1 mb-3">
+        <div *ngIf="shouldDisplayContainer(container)">
+          <h2 class="mb-4 card-text lh-1 fw-bold">{{container?.title}}</h2>
+          <p class="mb-4 card-text lh-1 fw-light">PadletOwner: {{container.user.name}}</p>
+          <p class="mb-4 card-text lh-1 fw-light">Veröffentlicht am: {{container.published | date: 'longDate'}}</p>
+          <p class="mb-4 card-text lh-1 fw-light">
+              <span
+                [ngClass]="{'bg-success text-white': isPublicContainer(container),
+               'bg-warning text-dark': !isPublicContainer(container)}">
+              {{isPublicContainer(container) ? 'Öffentlich' : 'Nicht öffentlich'}}
+              </span>
+          </p>
+
+          <button class="btn btn-dark" (click)="navigateToPadletList(container.id)">Entries ({{container?.title}})
+          </button>
+          <!-- <div class="text-center">_____________________________</div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container px-4 py-5" id="custom-cards2">
+      <h1 class="pb-5 border-bottom text-center">Alle Container von {{authService.getCurrentUser().name}}</h1>
+      <div class="col">
+        <div class="card card-cover h-100 overflow-hidden text-white bg-primary rounded-5 shadow-lg">
+          <div *ngFor="let container of containers" class="d-flex flex-column p-5 pb-3 text-white text-shadow-1 mb-3">
+            <div *ngIf="displayContainerOfLoggedInUser(container)">
+              <h2 class="mb-4 card-text lh-1 fw-bold">{{container?.title}}</h2>
+              <p class="mb-4 card-text lh-1 fw-light">PadletOwner: {{container.user.name}}</p>
+              <p class="mb-4 card-text lh-1 fw-light">Veröffentlicht am: {{container.published | date: 'longDate'}}</p>
+              <p class="mb-4 card-text lh-1 fw-light">
+              <span
+                [ngClass]="{'bg-success text-white': isPublicContainer(container),
+               'bg-warning text-dark': !isPublicContainer(container)}">
+              {{isPublicContainer(container) ? 'Öffentlich' : 'Nicht öffentlich'}}
+              </span>
+              </p>
+              <button class="btn btn-dark" (click)="navigateToPadletList(container.id)">Entries ({{container?.title}})
+              </button>
+              <!-- <div class="text-center">_____________________________</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!--
+    <ul class="d-flex list-unstyled mt-auto">
+      <li class="d-flex align-items-center me-3" *ngFor="let padlet of container.padlets">
+        <small>{{ padlet.title }}</small>
+      </li>
+      <li class="d-flex justify-content-center">
+        <small>{{container.isPublic}}</small>
+        <small>ContainerID: {{container?.id}}</small>
+      </li>
+    </ul>
+    -->
